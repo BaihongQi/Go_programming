@@ -460,9 +460,8 @@ class GoBoard(object):
                 if capture == True:
                     break
             
-            if capture == True:
-                return
-                    
+        if capture == True:
+            return False, response
                     
                         
         in_enemy_eye = self._is_eyeish(point) != color
@@ -474,6 +473,8 @@ class GoBoard(object):
             msg = "Playing a move with %s color in the row and column %d %d is permited"%(color,c[0],c[1])
             return True, msg
         else:
+            
+
             # undoing the move because of being suicidal
             self.board[point] = EMPTY
             if cap_inds!= None:
