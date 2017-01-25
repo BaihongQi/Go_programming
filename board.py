@@ -433,15 +433,16 @@ class GoBoard(object):
             return False , msg
         
 
-        else:
-            wrong_color = 0
-            
         self.board[point] = color
         self._is_empty = False
         self.caps = []
         single_captures = []
         cap_inds = None
         neighbors = self._neighbors(point)
+        c=self._point_to_coord(point)
+        
+        capture = False
+        
         for n in neighbors:
             if self.board[n]==BORDER:
                 continue
@@ -449,19 +450,21 @@ class GoBoard(object):
                 if self.board[n]!=EMPTY:
                     fboard = self._flood_fill(n)
                     if not self._liberty_flood(fboard):
-                        cap_inds = fboard==FLOODFILL
-                        #self.caps = np.where(fboard==FLOODFILL)
-                        self.caps += list(*np.where(fboard==FLOODFILL))
-                        num_captures = np.sum(cap_inds)
-                        if num_captures == self.size*self.size:
-                            self._is_empty = True
-                        if num_captures == 1:
-                            single_captures.append(n)
-                        if color==WHITE:
-                            self.white_captures += num_captures
-                        else :
-                            self.black_captures += num_captures
-                        self.board[cap_inds]=EMPTY
+                        
+                        column_letters = "abcdefghjklmnopqrstuvwxyz"
+                        response = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (capture)"
+                        sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()  
+                        capture = True
+                        self.board[point] = EMPTY
+                        break
+                if capture == True:
+                    break
+            
+            if capture == True:
+                return
+                    
+                    
+                        
         in_enemy_eye = self._is_eyeish(point) != color
         fboard = self._flood_fill(point)
         self.ko_constraint = single_captures[0] if in_enemy_eye and len(single_captures) == 1 else None
