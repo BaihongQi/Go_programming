@@ -15,13 +15,13 @@ glossary:
 
 import numpy as np
 import sys
-from board_util import GoBoardUtil, BLACK, WHITE, EMPTY, BORDER, FLOODFILL
+from board_util import GoBoardUtil, BLACK, WHITE, EMPTY, BORDER, FLOODFILL 
 
 class GoBoard(object):
+    
+    
 
-
-
-
+        
     def move(self, point, color):
         """
         Play a move on the board.
@@ -31,9 +31,7 @@ class GoBoard(object):
             color
         """
         move_inspection, msg =self._play_move(point,color)
-        if msg!="":
-            sys.stdout.write('= {}\n\n'.format(msg)); sys.stdout.flush()
-
+        
         if not move_inspection:
             return False
         else:
@@ -45,7 +43,7 @@ class GoBoard(object):
         #TODO: would be nice to have a nicer printout of the board
         pass
 
-
+    
 
     def get_color(self, point):
         """
@@ -57,8 +55,8 @@ class GoBoard(object):
         """
         return self.board[point]
 
-
-
+        
+        
     def check_legal(self,point,color):
         """
         Argumnets:
@@ -135,14 +133,14 @@ class GoBoard(object):
             board[i,:] = self.board[row:row+self.size]
         return board
 
-
+        
     def get_empty_positions(self, color):
         """
         Argumnets:
             color
         This function return a list of moves for current player.
         Return:
-            list of empty poisitions by excluding eye points and KO constraint points
+            list of empty poisitions by excluding eye points and KO constraint points 
         """
         moves = []
         for y in range(1,self.size+1,1):
@@ -203,7 +201,7 @@ class GoBoard(object):
         This is an example of 3x3 board point numbering (indices of numpy array).
         Spaces are added for illustration to separate board points from border points.
         Note that there is only one point buffer between each row (e.g. point 12).
-
+        
         16   17 18 19   20
 
         12   13 14 15   16
@@ -223,7 +221,7 @@ class GoBoard(object):
 
         """
         self.board = np.ones((self.maxpoint),dtype=np.int16)*BORDER
-        self._empty_filling(self.board)
+        self._empty_filling(self.board) 
 
 
     def copy(self):
@@ -241,7 +239,7 @@ class GoBoard(object):
         b.current_player = self.current_player
         b.ko_constraint =  self.ko_constraint
         b.white_captures = self.white_captures
-        b.black_captures = self.black_captures
+        b.black_captures = self.black_captures 
 
         return b
 
@@ -291,9 +289,9 @@ class GoBoard(object):
             false_count += 1
         if false_count >= 2:
             return None
-        return eye_color
-
-
+        return eye_color    
+    
+        
     """
     ----------------------------------------------------------------------------------------------------------------------
     helper functions for playing a move!
@@ -311,7 +309,7 @@ class GoBoard(object):
         bool:
              whether the neighbors of the point all have same color
         This is based on https://github.com/pasky/michi/blob/master/michi.py --> is_eyeish
-
+        
         """
         if self.board[point] != EMPTY:
             return None
@@ -421,22 +419,19 @@ class GoBoard(object):
 
         if self.board[point] != EMPTY:
             c=self._point_to_coord(point)
-
+            
             column_letters = "abcdefghjklmnopqrstuvwxyz"
-            msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (occupied)"
-            #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
-
-            #msg = "Row and Column: %d %d is already filled with a %s stone"%(c[0],c[1],GoBoardUtil.int_to_color(color))
+            response = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (occupied)"
+            sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
+      
+            msg = "Row and Column: %d %d is already filled with a %s stone"%(c[0],c[1],GoBoardUtil.int_to_color(color))
             return False,msg
-            #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
-
-
+        
         if point == self.ko_constraint:
             msg ="KO move is not permitted!"
-            #sys.stdout.write('= {}\n\n'.format(msg)); sys.stdout.flush()
+            sys.stdout.write('= {}\n\n'.format(msg)); sys.stdout.flush()
             return False , msg
-            #sys.stdout.write('= {}\n\n'.format(msg)); sys.stdout.flush()
-
+        
 
         self.board[point] = color
         self._is_empty = False
@@ -445,9 +440,9 @@ class GoBoard(object):
         cap_inds = None
         neighbors = self._neighbors(point)
         c=self._point_to_coord(point)
-
+        
         capture = False
-
+        
         for n in neighbors:
             if self.board[n]==BORDER:
                 continue
@@ -455,47 +450,43 @@ class GoBoard(object):
                 if self.board[n]!=EMPTY:
                     fboard = self._flood_fill(n)
                     if not self._liberty_flood(fboard):
-
+                        
                         column_letters = "abcdefghjklmnopqrstuvwxyz"
-                        msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (capture)"
-                        #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
+                        response = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (capture)"
+                        sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()  
                         capture = True
                         self.board[point] = EMPTY
                         break
                 if capture == True:
                     break
-                    #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
-
+            
         if capture == True:
-            #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
-            return False, msg
-            #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
-
-
+            return False, response
+                    
+                        
         in_enemy_eye = self._is_eyeish(point) != color
         fboard = self._flood_fill(point)
         self.ko_constraint = single_captures[0] if in_enemy_eye and len(single_captures) == 1 else None
         if self._liberty_flood(fboard) and self.suicide:
             #non suicidal move
             c=self._point_to_coord(point)
-            msg = ""
+            msg = "Playing a move with %s color in the row and column %d %d is permited"%(color,c[0],c[1])
             return True, msg
         else:
-
+            
 
             # undoing the move because of being suicidal
             self.board[point] = EMPTY
             if cap_inds!= None:
                 self.board[cap_inds]=GoBoardUtil.opponent(color)
             c=self._point_to_coord(point)
-            #msg = "Suicide move with color %s in the row and column: %d %d "%(color, c[0],c[1])
-
+            msg = "Suicide move with color %s in the row and column: %d %d "%(color, c[0],c[1])
+            
             column_letters = "abcdefghjklmnopqrstuvwxyz"
-            msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (suicide)"
-            #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
-
+            response = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (suicide)"
+            sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()  
+            
             return False, msg
-
 
 
     def _neighbors(self,point):
@@ -628,3 +619,4 @@ class GoBoard(object):
             return 'pass'
         row, col = divmod(point, self.NS)
         return row,col
+
