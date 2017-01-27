@@ -1,0 +1,78 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 # test case for CMPUT 496 NoGo program.\
+\
+boardsize 4\
+play w a1\
+play w a2\
+# now both b1,b2 are illegal for black\
+genmove b\
+#should aways gives suicide illegal move error message\
+\
+boardsize 5\
+play b a1\
+play b k2\
+#should give a error message "out of board"\
+\
+boardclear\
+play k a1\
+#wrong colour message\
+play w a1 a2\
+#wrong number of argument\
+play b pass\
+#pass is illegal\
+\
+boardclear\
+boardsize 4\
+play b a1\
+play w a2\
+play w b1\
+# capture is illegal.\
+\
+boardclear\
+boardsize 3\
+play b a1\
+play b a2\
+play b a3\
+play b c1\
+play b c2\
+play b c3\
+genmove w\
+genmove w\
+genmove w\
+#Erro message:"suicide"(2 lines enemy only middle line avalible)\
+\
+boardclear\
+play b a2\
+play b b1\
+play b b3\
+play b c2\
+genmove w\
+# suicide is illegal(different from the formal case because this one #contain both corner case,and surronding by enemy case)\
+\
+boardclear\
+boardsize 4\
+play b a1\
+play b a2\
+play b a3\
+play b a4\
+play b b1\
+play b b4\
+play b c1\
+play b c4\
+play b d1\
+play b d2\
+play b d3\
+play b d4\
+genmove w\
+genmove w\
+genmove w\
+genmove w\
+#suicide case(surrond by enemy but still have place to move, because w #still has libertiy)\
+\
+}
