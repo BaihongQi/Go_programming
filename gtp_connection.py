@@ -353,7 +353,7 @@ class GtpConnection():
                                                           self.board.ko_constraint))
             move = self.go_engine.get_move(self.board, color)
             if move is None:
-                self.respond("pass")
+                self.respond("pass is illegal, unalbe to move")
                 return
 
             if not self.board.check_legal(move, color):
