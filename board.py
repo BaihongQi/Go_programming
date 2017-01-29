@@ -423,7 +423,7 @@ class GoBoard(object):
             c=self._point_to_coord(point)
 
             column_letters = "abcdefghjklmnopqrstuvwxyz"
-            msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (occupied)"
+            msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " occupied"
             #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
 
             #msg = "Row and Column: %d %d is already filled with a %s stone"%(c[0],c[1],GoBoardUtil.int_to_color(color))
@@ -457,7 +457,7 @@ class GoBoard(object):
                     if not self._liberty_flood(fboard):
 
                         column_letters = "abcdefghjklmnopqrstuvwxyz"
-                        msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (capture)"
+                        msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " capture"
                         #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
                         capture = True
                         self.board[point] = EMPTY
