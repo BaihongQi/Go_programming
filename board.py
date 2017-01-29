@@ -491,7 +491,7 @@ class GoBoard(object):
             #msg = "Suicide move with color %s in the row and column: %d %d "%(color, c[0],c[1])
 
             column_letters = "abcdefghjklmnopqrstuvwxyz"
-            msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " (suicide)"
+            msg = "illegal move: " + GoBoardUtil.int_to_color(color) + " " + column_letters[c[1]-1] + str(c[0]) + " suicide"
             #sys.stdout.write('= {}\n\n'.format(response)); sys.stdout.flush()
 
             return False, msg
