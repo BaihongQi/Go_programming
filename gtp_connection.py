@@ -302,7 +302,7 @@ class GtpConnection():
             
             # check for wrong color
             if board_color != "w" and board_color != "b":
-                self.respond("illegal move: " + args[0] + " " + args[1] + " (wrong color)")
+                self.respond("illegal move: " + args[0] + " " + args[1] + " wrong color")
                 return
             
                 
