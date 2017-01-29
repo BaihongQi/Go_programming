@@ -146,7 +146,7 @@ class GtpConnection():
             msg = "illegal move: "
             for i in range(argnum):
                 msg += args[i]
-            msg += " (wrong number of arguments)"
+            msg += " wrong number of arguments"
             self.respond(msg)
             return True
         
