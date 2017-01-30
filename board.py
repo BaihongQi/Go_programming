@@ -150,8 +150,9 @@ class GoBoard(object):
                 point = self._coord_to_point(x,y)
                 if self.get_color(point)!=EMPTY:
                     continue
-                if self.is_eye(point,color):
-                    continue
+                #if self.is_eye(point,color):
+                    #continue
+                    #now will not filter eyeish move for same color, evne its the last spot avalible.
                 if self.ko_constraint==point:
                     continue
                 moves.append(point)
