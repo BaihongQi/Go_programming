@@ -1,5 +1,6 @@
 # test case for CMPUT 496 NoGo program.
-
+baaaadsize 4
+#wrong command test command.
 boardsize 4
 play w a1
 play w a2
