@@ -11,13 +11,13 @@ legal_moves b
 genmove b
 #[]
 #[pass is illegal, unalbe to move]
-#should aways gives suicide illegal move error message
+#random move, no legal move test, it will try passing.
 
 boardsize 5
 play b a1
 play b k2
 #[illegal move: b k2 wrong coordinate]
-#should give a error message "out of board"
+#out of board test, wrong coordinate.
 
 clear_board
 play k a1
@@ -25,7 +25,7 @@ play k a1
 #wrong color message
 
 play w a1 a2
-#wrong number of argument
+#wrong number of argument?
 
 play b pass
 #[illegal move: b pass (passing is illegal)]
