@@ -308,7 +308,7 @@ class GtpConnection():
                 
             color= GoBoardUtil.color_to_int(board_color)
             if args[1].lower()=='pass':
-                self.respond("illegal move: " + board_color + " " + board_move + " (passing is illegal)")
+                self.respond("illegal move: " + board_color + " " + board_move + " passing is illegal")
                 self.debug_msg("Player {} is passing\n".format(args[0]))
                 return
             

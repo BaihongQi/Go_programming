@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Output: nogotest.gtp</title>
-<meta http-equiv="Content-Type" content="text/html; charset=MacRoman">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="gogui-regress 1.4.9 (http://gogui.sf.net)">
 <style type="text/css">
 <!--
@@ -23,9 +23,251 @@ span.test { font-weight:bold; }
 </td></tr>
 </table>
 <table width="100%" bgcolor="#e0e0e0">
-<tr><th align="left">Date:</th><td>January 30, 2017 2:06:18 PM MST</td></tr>
-<tr><th align="left">Host:</th><td>uws110103usr.uws.ualberta.ca</td></tr>
+<tr><th align="left">Date:</th><td>January 30, 2017 3:39:48 PM MST</td></tr>
+<tr><th align="left">Host:</th><td>ui13 (Intel(R) Core(TM)2 Duo CPU     E6750  @ 2.66GHz)</td></tr>
 <tr><th align="left" valign="top">Command:</th>
-<td valign="top"><tt>./Go1.py</tt></td></tr>
+<td valign="top"><tt>Go1.py</tt></td></tr>
 </table>
 <pre style="margin:1em">
+name
+= Go1
+
+version
+= 0.1
+
+cputime
+? Unknown command
+
+</pre>
+<hr style="margin:1em" size="1">
+<pre style="margin:1em">
+<span class="comment"># test case for CMPUT 496 NoGo program.
+</span>
+<span class="command">boardsize 2
+</span>= 
+
+<span class="command">play w a1
+</span>= 
+
+<span class="command">play w b2
+</span>= 
+
+<span class="test"><a name="10">10 legal_moves b
+</a>#? []
+= 
+
+<a name="20">20 genmove b
+</a>#? [pass is illegal, unalbe to move]
+= pass is illegal, unalbe to move
+
+</span><span class="comment">#random move, no legal move test, it will try passing.
+</span>
+<span class="command">boardsize 5
+</span>= 
+
+<span class="command">play b a1
+</span>= 
+
+<span class="test"><a name="30">30 play b k2
+</a>#? [illegal move: b k2 wrong coordinate]
+= illegal move: b k2 wrong coordinate
+
+</span><span class="comment">#out of board test, wrong coordinate.
+</span>
+<span class="command">clear_board
+</span>= 
+
+<span class="test"><a name="40">40 play k a1
+</a>#? [illegal move: k a1 wrong color]
+= illegal move: k a1 wrong color
+
+</span><span class="comment">#wrong color message
+</span>
+<span class="test"><a name="50">50 play b pass
+</a>#? [illegal move: b pass passing is illegal]
+= illegal move: b pass passing is illegal
+
+</span>
+<span class="command">clear_board
+</span>= 
+
+<span class="command">boardsize 4
+</span>= 
+
+<span class="command">play b a1
+</span>= 
+
+<span class="command">play w a2
+</span>= 
+
+<span class="test"><a name="60">60 play w b1
+</a>#? [illegal move: w b1 capture]
+= illegal move: w b1 capture
+
+</span><span class="comment"># capture is illegal.(surrounding by enemy and conner)
+</span>
+<span class="command">clear_board
+</span>= 
+
+<span class="command">boardsize 3
+</span>= 
+
+<span class="command">play b b1
+</span>= 
+
+<span class="command">play w b2
+</span>= 
+
+<span class="command">play b b3
+</span>= 
+
+<span class="command">play b c2
+</span>= 
+
+<span class="test"><a name="70">70 play b a2
+</a>#? [illegal move: b a2 capture]
+= illegal move: b a2 capture
+
+</span><span class="comment">#capture is illegal (this case is surrounding by enemy only)
+</span>
+<span class="command">clear_board
+</span>= 
+
+<span class="command">play b a1
+</span>= 
+
+<span class="command">play w a2
+</span>= 
+
+<span class="command">play w a3
+</span>= 
+
+<span class="command">play b b2
+</span>= 
+
+<span class="test"><a name="80">80 play b b3
+</a>#? [illegal move: b b3 capture]
+= illegal move: b b3 capture
+
+</span><span class="comment">#capture is illegal(surrouding by enemy and border/ multiple points capture:a2,a3)
+</span>
+<span class="command">clear_board
+</span>= 
+
+<span class="command">play b b3
+</span>= 
+
+<span class="command">play w b2
+</span>= 
+
+<span class="command">play w a3
+</span>= 
+
+<span class="test"><a name="90">90 play w c3
+</a>#? [illegal move: w c3 capture]
+= illegal move: w c3 capture
+
+</span><span class="comment">#capture is illegal( 3 enemy and one boarder)
+</span>
+
+<span class="command">clear_board
+</span>= 
+
+<span class="command">boardsize 3
+</span>= 
+
+<span class="command">play b a1
+</span>= 
+
+<span class="test"><a name="100">100 play b a1
+</a>#? [illegal move: b a1 occupied]
+= illegal move: b a1 occupied
+
+</span>
+<span class="command">clear_board
+</span>= 
+
+<span class="command">play b a2
+</span>= 
+
+<span class="command">play b b1
+</span>= 
+
+<span class="command">play b b3
+</span>= 
+
+<span class="command">play b c2
+</span>= 
+
+<span class="command">play w b2
+</span>= illegal move: w b2 suicide
+
+<span class="command">play w a1
+</span>= illegal move: w a1 suicide
+
+<span class="test"><a name="110">110 legal_moves w
+</a>#? []
+= 
+
+</span><span class="comment"># suicide is illegal(#contain both #corner case,and surronding by enemy case)
+</span>
+<span class="command">clear_board
+</span>= 
+
+<span class="command">boardsize 4
+</span>= 
+
+<span class="command">play b a1
+</span>= 
+
+<span class="command">play b a2
+</span>= 
+
+<span class="command">play b a3
+</span>= 
+
+<span class="command">play b a4
+</span>= 
+
+<span class="command">play b b1
+</span>= 
+
+<span class="command">play b b4
+</span>= 
+
+<span class="command">play b c1
+</span>= 
+
+<span class="command">play b c4
+</span>= 
+
+<span class="command">play b d1
+</span>= 
+
+<span class="command">play b d2
+</span>= 
+
+<span class="command">play b d3
+</span>= 
+
+<span class="command">play b d4
+</span>= 
+
+<span class="test"><a name="120">120 legal_moves w
+</a>#? [b2 b3 c2 c3]
+= b2 b3 c2 c3
+
+</span></pre>
+<hr style="margin:1em" size="1">
+<pre style="margin:1em">
+</span>cputime
+? Unknown command
+
+quit
+= 
+
+</pre>
+<hr style="margin-bottom:0" size="1">
+<p style="margin-top:1; margin-right:5" align="right"><i><small>Generated on 1/30/17 3:39 PM by gogui-regress 1.4.9 (<a href="http://gogui.sf.net">http://gogui.sf.net</a>)</small></i></p>
+</body>
+</html>

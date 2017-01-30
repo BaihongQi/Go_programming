@@ -20,14 +20,14 @@ clear_board
 #? [illegal move: k a1 wrong color]
 #wrong color message
 
-50 play b pass
+60 play b pass
 #? [illegal move: b pass passing is illegal]
 
 clear_board
 boardsize 4
 play b a1
 play w a2
-60 play w b1
+70 play w b1
 #? [illegal move: w b1 capture]
 # capture is illegal.(surrounding by enemy and conner)
 
@@ -37,7 +37,7 @@ play b b1
 play w b2
 play b b3
 play b c2
-70 play b a2
+80 play b a2
 #? [illegal move: b a2 capture]
 #capture is illegal (this case is surrounding by enemy only)
 
@@ -46,7 +46,7 @@ play b a1
 play w a2
 play w a3
 play b b2
-80 play b b3
+90 play b b3
 #? [illegal move: b b3 capture]
 #capture is illegal(surrouding by enemy and border/ multiple points capture:a2,a3)
 
@@ -54,7 +54,7 @@ clear_board
 play b b3
 play w b2
 play w a3
-90 play w c3
+100 play w c3
 #? [illegal move: w c3 capture]
 #capture is illegal( 3 enemy and one boarder)
 
@@ -62,7 +62,7 @@ play w a3
 clear_board
 boardsize 3
 play b a1
-100 play b a1
+110 play b a1
 #? [illegal move: b a1 occupied]
 
 clear_board
@@ -72,7 +72,7 @@ play b b3
 play b c2
 play w b2
 play w a1
-110 legal_moves w
+120 legal_moves w
 #? []
 # suicide is illegal(#contain both #corner case,and surronding by enemy case)
 
@@ -90,5 +90,5 @@ play b d1
 play b d2
 play b d3
 play b d4
-120 legal_moves w
+130 legal_moves w
 #? [b2 b3 c2 c3]
