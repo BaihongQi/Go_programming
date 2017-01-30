@@ -161,7 +161,7 @@ class GoBoardUtil(object):
         except (IndexError, ValueError):
             raise ValueError("invalid point: '%s'" % s)
         if not (col <= board_size and row <= board_size):
-            sys.stdout.write('= {}\n\n'.format("illegal move: " + color + " " + s + " (wrong coordinate)")); sys.stdout.flush()
+            sys.stdout.write('= {}\n\n'.format("illegal move: " + color + " " + s + " wrong coordinate")); sys.stdout.flush()
             return False
         return row, col
     
