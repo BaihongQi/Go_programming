@@ -1,31 +1,41 @@
 # test case for CMPUT 496 NoGo program.
+
 baaaadsize 4
+#[? Unknown command]
 #wrong command test command.
-boardsize 4
+
+boardsize 2
 play w a1
-play w a2
-# now both b1,b2 are illegal for black
+play w b2
+legal_moves b
 genmove b
+#[]
+#[pass is illegal, unalbe to move]
 #should aways gives suicide illegal move error message
 
 boardsize 5
 play b a1
 play b k2
+#[illegal move: b k2 wrong coordinate]
 #should give a error message "out of board"
 
 clear_board
 play k a1
-#wrong colour message
+#[illegal move: k a1 wrong color]
+#wrong color message
+
 play w a1 a2
 #wrong number of argument
+
 play b pass
-#pass is illegal
+#[illegal move: b pass (passing is illegal)]
 
 clear_board
 boardsize 4
 play b a1
 play w a2
 play w b1
+#[illegal move: w b1 capture]
 # capture is illegal.(surrounding by enemy and conner)
 
 clear_board
@@ -35,7 +45,8 @@ play w b2
 play b b3
 play b c2
 play b a2
-#capture is illegal (this case is surrounding by enemy)
+#[illegal move: b a2 capture]
+#capture is illegal (this case is surrounding by enemy only)
 
 clear_board
 play b a1
@@ -43,35 +54,36 @@ play w a2
 play w a3
 play b b2
 play b b3
+#[illegal move: b b3 capture]
 #capture is illegal(surrouding by enemy and border/ multiple points capture:a2,a3)
 
+clear_board
 play b b3
 play w b2
 play w a3
 play w c3
-#capture is ileegal( 3 enemy and one boarder)
+#[= illegal move: w c3 capture]
+#capture is illegal( 3 enemy and one boarder)
 
 
 clear_board
 boardsize 3
 play b a1
-play b a2
-play b a3
-play b c1
-play b c2
-play b c3
-genmove w
-genmove w
-genmove w
-#Erro message:"suicide"(2 lines enemy only middle line avalible)
+play b a1
+#[illegal move: b a1 occupied]
 
 clear_board
 play b a2
 play b b1
 play b b3
 play b c2
-genmove w
-# suicide is illegal(different from the formal case because this one #contain both #corner case,and surronding by enemy case)
+play w b2
+play w a1
+legal_moves w
+#[illegal move: w b2 suicide]
+#[illegal move: w a1 suicide]
+#[]
+# suicide is illegal(#contain both #corner case,and surronding by enemy case)
 
 clear_board
 boardsize 4
@@ -90,8 +102,4 @@ play b d4
 genmove w
 genmove w
 genmove w
-genmove w
-#suicide case(surrond by enemy but still have place to move, because w #still has #libertiy)
-#in the end the genmove will try passing, because there is only one empty spot left
-#however, now passing is illegal so it will print message.
-#also this shows that genmove will not filter the eye-filling move.
+#shows that genmove will not filter the eye-filling move.
