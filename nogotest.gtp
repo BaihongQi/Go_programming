@@ -5,14 +5,14 @@ play w a1
 play w b2
 10 legal_moves b
 #? []
-20 genmove b
-#? [pass is illegal, unalbe to move]
-#random move, no legal move test, it will try passing.
+
 
 boardsize 5
 play b a1
 30 play b k2
 #? [illegal move: b k2 wrong coordinate]
+20 play b a20
+#? [illegal move: b a20 wrong coordinate]
 #out of board test, wrong coordinate.
 
 clear_board
@@ -85,3 +85,6 @@ play w b2
 130 play w
 #? [illegal move: w wrong number of arguments]
 
+140 play W A2
+#? []
+#test if upper case input works.
