@@ -70,25 +70,18 @@ play b a2
 play b b1
 play b b3
 play b c2
-play w b2
-play w a1
-110 legal_moves w
-#? []
+140 play w b2
+#? [illegal move: w b2 suicide]
 # suicide is illegal(#contain both #corner case,and surronding by enemy case)
 
 clear_board
-boardsize 4
-play b a1
-play b a2
-play b a3
-play b a4
-play b b1
-play b b4
-play b c1
-play b c4
-play b d1
-play b d2
-play b d3
-play b d4
+boardsize 2
+play w a1
+play w b2
 120 legal_moves w
-#? [b2 b3 c2 c3]
+#? [a2 b1]
+#not filtering eyeish move
+
+130 play w
+#? [illegal move: w wrong number of arguments]
+

@@ -23,7 +23,7 @@ span.test { font-weight:bold; }
 </td></tr>
 </table>
 <table width="100%" bgcolor="#e0e0e0">
-<tr><th align="left">Date:</th><td>January 30, 2017 3:39:48 PM MST</td></tr>
+<tr><th align="left">Date:</th><td>January 30, 2017 5:12:25 PM MST</td></tr>
 <tr><th align="left">Host:</th><td>ui13 (Intel(R) Core(TM)2 Duo CPU     E6750  @ 2.66GHz)</td></tr>
 <tr><th align="left" valign="top">Command:</th>
 <td valign="top"><tt>Go1.py</tt></td></tr>
@@ -199,68 +199,39 @@ cputime
 <span class="command">play b c2
 </span>= 
 
-<span class="command">play w b2
-</span>= illegal move: w b2 suicide
-
-<span class="command">play w a1
-</span>= illegal move: w a1 suicide
-
-<span class="test"><a name="110">110 legal_moves w
-</a>#? []
-= 
+<span class="test"><a name="140">140 play w b2
+</a>#? [illegal move: w b2 suicide]
+= illegal move: w b2 suicide
 
 </span><span class="comment"># suicide is illegal(#contain both #corner case,and surronding by enemy case)
 </span>
 <span class="command">clear_board
 </span>= 
 
-<span class="command">boardsize 4
+<span class="command">boardsize 2
 </span>= 
 
-<span class="command">play b a1
+<span class="command">play w a1
 </span>= 
 
-<span class="command">play b a2
-</span>= 
-
-<span class="command">play b a3
-</span>= 
-
-<span class="command">play b a4
-</span>= 
-
-<span class="command">play b b1
-</span>= 
-
-<span class="command">play b b4
-</span>= 
-
-<span class="command">play b c1
-</span>= 
-
-<span class="command">play b c4
-</span>= 
-
-<span class="command">play b d1
-</span>= 
-
-<span class="command">play b d2
-</span>= 
-
-<span class="command">play b d3
-</span>= 
-
-<span class="command">play b d4
+<span class="command">play w b2
 </span>= 
 
 <span class="test"><a name="120">120 legal_moves w
-</a>#? [b2 b3 c2 c3]
-= b2 b3 c2 c3
+</a>#? [a2 b1]
+= a2 b1
 
-</span></pre>
+</span><span class="comment">#not filtering eyeish move
+</span>
+<span class="test"><a name="130">130 play w
+</a>#? [illegal move: w wrong number of arguments]
+= illegal move: w wrong number of arguments
+
+</span>
+</pre>
 <hr style="margin:1em" size="1">
 <pre style="margin:1em">
-</span>cputime
+cputime
 ? Unknown command
 
 quit
@@ -268,6 +239,6 @@ quit
 
 </pre>
 <hr style="margin-bottom:0" size="1">
-<p style="margin-top:1; margin-right:5" align="right"><i><small>Generated on 1/30/17 3:39 PM by gogui-regress 1.4.9 (<a href="http://gogui.sf.net">http://gogui.sf.net</a>)</small></i></p>
+<p style="margin-top:1; margin-right:5" align="right"><i><small>Generated on 1/30/17 5:12 PM by gogui-regress 1.4.9 (<a href="http://gogui.sf.net">http://gogui.sf.net</a>)</small></i></p>
 </body>
 </html>
