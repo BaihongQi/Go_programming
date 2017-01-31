@@ -9,10 +9,11 @@ play w b2
 
 boardsize 5
 play b a1
-30 play b k2
-#? [illegal move: b k2 wrong coordinate]
 20 play b a20
 #? [illegal move: b a20 wrong coordinate]
+
+30 play b k2
+#? [illegal move: b k2 wrong coordinate]
 #out of board test, wrong coordinate.
 
 clear_board
@@ -70,7 +71,7 @@ play b a2
 play b b1
 play b b3
 play b c2
-140 play w b2
+110 play w b2
 #? [illegal move: w b2 suicide]
 # suicide is illegal(#contain both #corner case,and surronding by enemy case)
 
